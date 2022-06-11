@@ -124,7 +124,6 @@ public:
         nMaxMoneyOut = 21000000 * COIN;
 
         nSubsidyHalvingBlock = 1000;
-        nMasternodeCollateral = 2500;
         strDevFeeAddress = "BNvmbM7ky7K4UWXramCjnLgUn5SpdnAce4";
 
         /** Height or Time Based Activations **/
