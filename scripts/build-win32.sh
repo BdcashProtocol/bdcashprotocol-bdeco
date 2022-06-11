@@ -4,4 +4,4 @@ cd ..
 make -j$(nproc)
 cd src
 cd qt
-strip bdeco-qt.exe
+strip bdcashprotocol-qt.exe

@@ -168,7 +168,7 @@ public:
 
         vSeeds.push_back(CDNSSeedData("seed1.bdcashprotocol.com", "seed1.bdcashprotocol.com"));
         vSeeds.push_back(CDNSSeedData("seed2.bdcashprotocol.com", "seed2.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("144.91.78.61", "144.91.78.61"));
+        vSeeds.push_back(CDNSSeedData("seed3.bdcashprotocol.com", "seed3.bdcashprotocol.com"));
 
 
         // BDCashProtocol addresses start with 'B'
@@ -259,8 +259,9 @@ public:
 
         assert(hashGenesisBlock == uint256("0x000066ac3487857739e403a8d9ea432a455786a6b9f0f61d9188f36ddffa16b8"));
 
-        vFixedSeeds.clear();
-        vSeeds.clear();
+        vSeeds.push_back(CDNSSeedData("seedtest1.bdcashprotocol.com", "seedtest1.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("seedtest2.bdcashprotocol.com", "seedtest2.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("seedtest3.bdcashprotocol.com", "seedtest3.bdcashprotocol.com"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // Testnet bdcashprotocol addresses start with 'b'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 86);  // Testnet bdcashprotocol script addresses start with 'b' or 'c'

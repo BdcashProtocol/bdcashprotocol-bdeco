@@ -1793,9 +1793,9 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 
 CAmount GetCurrentCollateral(int nHeight)
 {
-    if (nHeight < 20000) {
+    if (nHeight <= 100000) {
         return 2500;
-    } else if (nHeight >= 20000 && nHeight <= 30000) {
+    } else if (nHeight >= 100001 && nHeight <= 30000) {
         return 3000;
     } else if (nHeight >= 20000 && nHeight <= 30000) {
         return 3000;
