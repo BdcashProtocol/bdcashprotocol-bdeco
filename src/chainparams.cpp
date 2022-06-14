@@ -169,6 +169,7 @@ public:
         vSeeds.push_back(CDNSSeedData("seed1.bdcashprotocol.com", "seed1.bdcashprotocol.com"));
         vSeeds.push_back(CDNSSeedData("seed2.bdcashprotocol.com", "seed2.bdcashprotocol.com"));
         vSeeds.push_back(CDNSSeedData("seed3.bdcashprotocol.com", "seed3.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("coinstake.in", "coinstake.in"));
 
 
         // BDCashProtocol addresses start with 'B'
@@ -247,7 +248,6 @@ public:
         nBlockZerocoinV2 = 15;
 
         nSubsidyHalvingBlock = 1600;
-        nMasternodeCollateral = 2500;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1652478901;
@@ -262,6 +262,7 @@ public:
         vSeeds.push_back(CDNSSeedData("seedtest1.bdcashprotocol.com", "seedtest1.bdcashprotocol.com"));
         vSeeds.push_back(CDNSSeedData("seedtest2.bdcashprotocol.com", "seedtest2.bdcashprotocol.com"));
         vSeeds.push_back(CDNSSeedData("seedtest3.bdcashprotocol.com", "seedtest3.bdcashprotocol.com"));
+        
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // Testnet bdcashprotocol addresses start with 'b'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 86);  // Testnet bdcashprotocol script addresses start with 'b' or 'c'

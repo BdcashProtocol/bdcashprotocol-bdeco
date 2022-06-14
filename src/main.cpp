@@ -1791,16 +1791,16 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
     return true;
 }
 
-CAmount GetCurrentCollateral(int nHeight)
+CAmount GetCurrentCollateral()
 {
-    if (nHeight <= 100000) {
-        return 2500;
-    } else if (nHeight >= 100001 && nHeight <= 30000) {
-        return 3000;
-    } else if (nHeight >= 20000 && nHeight <= 30000) {
-        return 3000;
-    } else if (nHeight >= 20000 && nHeight <= 30000) {
-        return 3000;
+    int blockHeight = chainActive.Height();
+    
+    if (blockHeight > 400000) return 10000 * COIN;
+    if (blockHeight > 300000) return 7000 * COIN;
+    if (blockHeight > 200000) return 5000 * COIN;
+    if (blockHeight > 100000) return 3000 * COIN;
+
+    return 2500 * COIN;
     }
 
 double ConvertBitsToDouble(unsigned int nBits)
