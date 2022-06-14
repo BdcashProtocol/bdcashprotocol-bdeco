@@ -14,22 +14,26 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 |Ticker 				    | `BDECO`               |Block Time  			| `1 MINUTE`          |
 |Algorithm					| `Quark`             |Stake Min Age		| `1 HOUR`           |
 |Type 						| `PoS/MN`                      |
-|Total Suply 			    | `21,000,000 BDECO`    |Port 			    | `17293`    		  |
-|Masternode Collateral      | `2,500 BDECO`         |Datadir			    | `.bdcashprotocol`			  |
+|Total Suply 			    | `210,000,000 BDECO`    |Port 			    | `36264`    		  |
+|Masternode Collateral      | `Variable`         |Datadir			    | `.bdcashprotocol`			  |
 
-|Schem Reward |               |              |        |         |
-|:-----------------|:------------|:------------- |:-----------|:-------------- |
-|     Blocks        |    Coins  |     POS(%)     |      MN(%)   |   TREASURE (Coins)  |
-0-1 | 5000000 | 0 | 0| 0|
-2-200 | 1 | 0 | 0| 0| 
-201-9999 | 10 | 40% | 60%|0.05BDECO|
-10000-49999 | 20 | 40% | 60%|0.05BDECO|
-50000-99999 | 15 | 40% | 60%|0.05BDECO|
-100000-149999 | 10 | 40% | 60%|0.05BDECO|
-150000-299999 | 5 | 40% | 60%|0.05BDECO|
-300000-599999 | 2.5 | 30% | 70%|0.05BDECO|
-600000-1000000 | 2 | 30% | 70%|0.05BDECO|
-1000001- to end | 1 | 30% | 70%|0.05BDECO|
+|Schem Reward |               |              |        |         |      |
+|:-----------------|:------------|:------------- |:-----------|:-------------- |:---------|
+|     Blocks        |    Coins  |     POS(%)     |      MN(%)   |   TREASURE (Coins)  | Collateral |
+0-1 | 5000000 | 0 | 0| 0|0 |
+2-200 | 1 | 0 | 0| 0| 0|
+201-9999 | 10 | 40% | 60%|0.05 BDECO| 2500 BDECO |
+10000-49999 | 20 | 40% | 60%|0.05 BDECO|2500 BDECO |
+50000-99999 | 15 | 40% | 60%|0.05 BDECO|2500 BDECO |
+100000-149999 | 25 | 30% | 70%|0.10 BDECO|3000 BDECO |
+150000-299999 | 50 | 35% | 65%|0.15 BDECO|4000 BDECO |
+300000-599999 | 45 | 45% | 55%|0.10 BDECO|5000 BDECO |
+600000-899999 | 40 | 30% | 70%|0.05 BDECO|7000 BDECO |
+900000-1099999 | 35 | 45% | 55%|0.10 BDECO|10000 BDECO |
+1100000-1299999 | 30 | 40% | 60%|0.05 BDECO|15000 BDECO |
+1300000-1599999 | 20 | 35% | 65%|0.15 BDECO|20000 BDECO |
+1600000-1999999 | 15 | 40% | 60%|0.10 BDECO|25000 BDECO |
+2000000- to end | 1 | 30% | 70%|0.05 BDECO|50000 BDECO |
 
 <b>PS:</b> <i>Treasure fee will be deducted directly from the Masternoe percentage</i>
 
