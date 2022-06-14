@@ -35,7 +35,7 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 1600000-1999999 | 15 | 40% | 60%|0.10 BDECO|25000 BDECO |
 2000000- to end | 10 | 30% | 70%|0.05 BDECO|50000 BDECO |
 
-<b>PS:</b> <i>Treasure fee will be deducted directly from the Masternoe percentage</i>
+<b>PS:</b> <i>Treasure fee will be deducted directly from the Masternode percentage</i>
 
 
 
@@ -43,7 +43,7 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 ### Social Network:
  [![Twitter](https://img.shields.io/static/v1?label=Twitter&message=Follow&color=blue)](https://twitter.com/bdcashprotocol) 
  [![ANN Official](https://img.shields.io/static/v1?label=BitcoinTalk&message=Join&color=yellow)](https://bitcointalk.org/index.php?topic=5244522) 
- [![Discord](https://img.shields.io/static/v1?label=Discord&message=Join&color=blueviolet)](https://discord.gg/rrr8vFS)
+ [![Discord](https://img.shields.io/static/v1?label=Discord&message=Join&color=blueviolet)](https://discord.gg/jJtDAmv22J)
  [![Telegram Officia](https://img.shields.io/static/v1?label=Telegram&message=Join&color=blue)](https://t.me/bdcashprotocol_official) 
  [![Reddit](https://img.shields.io/static/v1?label=Reddit&message=Join&color=orange)](https://www.reddit.com/r/bdcash_cryptocurrency/)
  [![Medium](https://img.shields.io/static/v1?label=Medium&message=Join&color=green)](https://bdcashprotocol.medium.com/) 
