@@ -1794,19 +1794,48 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 CAmount GetCurrentCollateral()
 {
     int blockHeight = chainActive.Height();
+    int gracePeriod = 100;
 
-    if (blockHeight > 2000000) return 50000 * COIN;
-    if (blockHeight > 1600000) return 25000 * COIN;
-    if (blockHeight > 1300000) return 20000 * COIN;
-    if (blockHeight > 1100000) return 15000 * COIN;
-    if (blockHeight > 900000)  return 10000 * COIN;
-    if (blockHeight > 600000)  return 7000 * COIN;
-    if (blockHeight > 300000)  return 5000 * COIN;
-    if (blockHeight > 150000)  return 4000 * COIN;
-    if (blockHeight > 100000)  return 3000 * COIN;
+    if (blockHeight > 2000000 + gracePeriod) return 50000 * COIN;
+    if (blockHeight <= 2000000 + gracePeriod &&  blockHeight >= 2000000 - gracePeriod) 
+        return 50000 ||  25000 * COIN;
 
+    if (blockHeight > 1600000 + gracePeriod) return 25000 * COIN;
+    if (blockHeight <= 1600000 + gracePeriod &&  blockHeight >= 1600000 - gracePeriod) 
+        return 25000 || 20000 * COIN;
+
+    if (blockHeight > 1300000 + gracePeriod) return 20000 * COIN;
+    if (blockHeight <= 1300000 + gracePeriod &&  blockHeight >= 1300000 - gracePeriod) 
+        return 20000 ||  15000 * COIN;
+
+    if (blockHeight > 1100000 + gracePeriod) return 15000 * COIN;
+    if (blockHeight <= 1100000 + gracePeriod && blockHeight >= 1100000 - gracePeriod) 
+        return 15000 || 10000 * COIN;
+
+    if (blockHeight > 900000 + gracePeriod) return 10000 * COIN;
+    if (blockHeight <= 900000 + gracePeriod && blockHeight >= 900000 - gracePeriod) 
+        return 10000 || 7000 * COIN;
+
+    if (blockHeight > 600000 + gracePeriod) return 7000 * COIN;
+    if (blockHeight <= 600000 + gracePeriod &&  blockHeight >= 600000 - gracePeriod) 
+        return 7000 || 5000 * COIN;
+
+    if (blockHeight > 300000 + gracePeriod) return 5000 * COIN;
+    if (blockHeight <= 300000 + gracePeriod &&  blockHeight >= 300000 - gracePeriod) 
+        return 5000 || 4000 * COIN;
+
+    if (blockHeight > 150000 + gracePeriod) return 4000 * COIN;
+    if (blockHeight <= 150000 + gracePeriod && blockHeight >= 150000 - gracePeriod) 
+        return 4000 || 3000 * COIN;
+
+    if (blockHeight > 100000 + gracePeriod) return 3000 * COIN;
+    if (blockHeight <= 100000 + gracePeriod && blockHeight >= 100000 - gracePeriod) 
+        return 3000 || 2500 * COIN;
+  
     return 2500 * COIN;
-    }
+
+}
+/////////////////////////////
 
 double ConvertBitsToDouble(unsigned int nBits)
 {
