@@ -121,7 +121,7 @@ public:
         nMinerThreads = 0;
         nTargetSpacing = 2 * 60;  // BDECO: 1 minutes
         nMaturity = 25;
-        nMaxMoneyOut = 21000000 * COIN;
+        nMaxMoneyOut = 210000000 * COIN;
 
         nSubsidyHalvingBlock = 1000;
         strDevFeeAddress = "BNvmbM7ky7K4UWXramCjnLgUn5SpdnAce4";
@@ -242,7 +242,7 @@ public:
         nLastPOWBlock = 500;
         nMaturity = 15;
         nModifierUpdateBlock = 0;
-        nMaxMoneyOut = 21000000 * COIN;
+        nMaxMoneyOut = 210000000 * COIN;
         nZerocoinStartHeight = 15;
         nZerocoinStartTime = 1547096400;
         nBlockZerocoinV2 = 15;
