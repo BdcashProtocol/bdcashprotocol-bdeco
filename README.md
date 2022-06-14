@@ -33,7 +33,7 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 1100000-1299999 | 30 | 40% | 60%|0.05 BDECO|15000 BDECO |
 1300000-1599999 | 20 | 35% | 65%|0.15 BDECO|20000 BDECO |
 1600000-1999999 | 15 | 40% | 60%|0.10 BDECO|25000 BDECO |
-2000000- to end | 1 | 30% | 70%|0.05 BDECO|50000 BDECO |
+2000000- to end | 10 | 30% | 70%|0.05 BDECO|50000 BDECO |
 
 <b>PS:</b> <i>Treasure fee will be deducted directly from the Masternoe percentage</i>
 
