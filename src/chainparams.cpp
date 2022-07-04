@@ -240,7 +240,7 @@ public:
         nDefaultPort = 27293;
         nMinerThreads = 0;
         nTargetSpacing = 2 * 60;
-        nLastPOWBlock = 500;
+        nLastPOWBlock = 100;
         nMaturity = 15;
         nModifierUpdateBlock = 0;
         nMaxMoneyOut = 210000000 * COIN;
