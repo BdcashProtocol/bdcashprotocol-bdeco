@@ -166,10 +166,10 @@ public:
         assert(hashGenesisBlock == uint256("0x0000ae49910f3ea69ebd9cc2d961908280ecd2b96532e206e8c37361faf1a51e"));
         assert(genesis.hashMerkleRoot == uint256("0xf4b45a6364c91c274d179429a09202a23fe2a6da548c81334d49ae19503c7f28"));
 
-        vSeeds.push_back(CDNSSeedData("seed1.bdcashprotocol.com", "seed1.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("seed2.bdcashprotocol.com", "seed2.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("seed3.bdcashprotocol.com", "seed3.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("coinstake.in", "coinstake.in"));
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed1.bdcashprotocol.com")); // First seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed2.bdcashprotocol.com")); // second seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed3.bdcashprotocol.com")); // Third seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("coinstake.in", "coinstake.in")); // from coinstake
 
 
         // BDCashProtocol addresses start with 'B'
@@ -178,7 +178,8 @@ public:
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 25);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0xB2)(0x47)(0x46).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0xB2)(0x43)(0x08).convert_to_container<std::vector<unsigned char> >();
-        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x02)(0x62).convert_to_container<std::vector<unsigned char> >();
+         // 	BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+        base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x02)(0x6f).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_main, ARRAYLEN(pnSeed6_main));
 
@@ -259,9 +260,9 @@ public:
 
         assert(hashGenesisBlock == uint256("0x000066ac3487857739e403a8d9ea432a455786a6b9f0f61d9188f36ddffa16b8"));
 
-        vSeeds.push_back(CDNSSeedData("seedtest1.bdcashprotocol.com", "seedtest1.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("seedtest2.bdcashprotocol.com", "seedtest2.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("seedtest3.bdcashprotocol.com", "seedtest3.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest1.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest2.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest3.bdcashprotocol.com"));
         
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // Testnet bdcashprotocol addresses start with 'b'
