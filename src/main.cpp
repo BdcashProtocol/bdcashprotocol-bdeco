@@ -1795,10 +1795,16 @@ CAmount GetCurrentCollateral()
 {
     int blockHeight = chainActive.Height();
 
-    if (blockHeight > 400000) return 10000 * COIN;
-    if (blockHeight > 300000) return 7000 * COIN;
-    if (blockHeight > 200000) return 5000 * COIN;
-    if (blockHeight > 100000) return 3000 * COIN;
+    if (blockHeight > 2000000) return 100000 * COIN;
+    if (blockHeight > 1600000) return 75000 * COIN;
+    if (blockHeight > 1300000) return 50000 * COIN;
+    if (blockHeight > 1100000) return 25000 * COIN;
+    if (blockHeight > 900000) return 20000 * COIN;
+    if (blockHeight > 600000) return 15000 * COIN;
+    if (blockHeight > 300000) return 10000 * COIN;
+    if (blockHeight > 150000) return 7000 * COIN;
+    if (blockHeight > 100000) return 5000 * COIN;
+
 
     return 2500 * COIN;
 
@@ -1836,16 +1842,25 @@ int64_t GetBlockValue(int nHeight)
         nSubsidy = COIN * 20;
     } else if ( nHeight >= 50000 && nHeight <= 99999) {
         nSubsidy = COIN * 15;
+    /// upgrade ands bump after this point    
     } else if ( nHeight >= 100000 && nHeight <= 149999) {
-        nSubsidy = COIN * 10;
+        nSubsidy = COIN * 25;
     } else if ( nHeight >= 150000 && nHeight <= 299999) {
-        nSubsidy = COIN * 5;
+        nSubsidy = COIN * 50;
     } else if ( nHeight >= 300000 && nHeight <= 599999) {
-        nSubsidy = COIN * 2.5;
-    } else if ( nHeight >= 600000 && nHeight <= 1000000) {
-        nSubsidy = COIN * 2;
+        nSubsidy = COIN * 45;
+    } else if ( nHeight >= 600000 && nHeight <= 899999) {
+        nSubsidy = COIN * 40;
+    } else if ( nHeight >= 900000 && nHeight <= 1099999) {
+        nSubsidy = COIN * 35;
+    } else if ( nHeight >= 1100000 && nHeight <= 1299999) {
+        nSubsidy = COIN * 30;
+    } else if ( nHeight >= 1300000 && nHeight <= 1599999) {
+        nSubsidy = COIN * 25; 
+    } else if ( nHeight >= 1600000 && nHeight <= 1999999) {
+        nSubsidy = COIN * 20;           
     } else {
-        nSubsidy = COIN * 1;
+        nSubsidy = COIN * 15;
     }
     return nSubsidy;
 }
@@ -1855,10 +1870,26 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, bool isZBDECOStake
     int64_t nMNSubsidy;
     if(nHeight < Params().LAST_POW_BLOCK()){
         nMNSubsidy = COIN * 0;
-    } else if (nHeight >= Params().LAST_POW_BLOCK() && nHeight <= 599999){
+    } else if (nHeight >= Params().LAST_POW_BLOCK() && nHeight <= 99999){
         nMNSubsidy = blockValue *  0.60;
-    } else{
+    } else if ( nHeight >= 100000 && nHeight <= 149999) {
         nMNSubsidy = blockValue *  0.70;
+    } else if ( nHeight >= 150000 && nHeight <= 299999) {
+        nMNSubsidy = blockValue *  0.65;   
+    } else if ( nHeight >= 300000 && nHeight <= 599999) {
+        nMNSubsidy = blockValue *  0.55;
+    } else if ( nHeight >= 600000 && nHeight <= 899999) {
+        nMNSubsidy = blockValue *  0.70;
+    } else if ( nHeight >= 900000 && nHeight <= 1099999) {
+        nMNSubsidy = blockValue *  0.55;
+    } else if ( nHeight >= 1100000 && nHeight <= 1299999) {
+        nMNSubsidy = blockValue *  0.60;
+    } else if ( nHeight >= 1300000 && nHeight <= 1599999) {
+        nMNSubsidy = blockValue *  0.65;
+    } else if ( nHeight >= 1600000 && nHeight <= 1999999) {
+       nMNSubsidy = blockValue *  0.60;          
+    } else {
+       nMNSubsidy = blockValue *  0.70;
     }
     return nMNSubsidy;
 }
@@ -1867,9 +1898,27 @@ int64_t GetDevelopersPayment(int nHeight) {
    int64_t nDFSubsidy;
    if (nHeight <  Params().LAST_POW_BLOCK()) {
         nDFSubsidy = COIN * 0;
-    } else if (nHeight >= Params().LAST_POW_BLOCK()) {
-        nDFSubsidy = COIN * 0.05;
-     }
+    } else if (nHeight >= Params().LAST_POW_BLOCK()  && nHeight <= 99999) {
+       nDFSubsidy = COIN * 0.05;
+    } else if ( nHeight >= 100000 && nHeight <= 149999) {
+       nDFSubsidy = COIN * 0.10;
+    } else if ( nHeight >= 150000 && nHeight <= 299999) {
+       nDFSubsidy = COIN * 0.15;
+    } else if ( nHeight >= 300000 && nHeight <= 599999) {
+       nDFSubsidy = COIN * 0.10;
+    } else if ( nHeight >= 600000 && nHeight <= 899999) {
+       nDFSubsidy = COIN * 0.05;
+    } else if ( nHeight >= 900000 && nHeight <= 1099999) {
+       nDFSubsidy = COIN * 0.10; 
+    } else if ( nHeight >= 1100000 && nHeight <= 1299999) {
+       nDFSubsidy = COIN * 0.05; 
+    } else if ( nHeight >= 1300000 && nHeight <= 1599999) {
+       nDFSubsidy = COIN * 0.20; 
+    } else if ( nHeight >= 1600000 && nHeight <= 1999999) {
+       nDFSubsidy = COIN * 0.15;               
+    } else {
+       nDFSubsidy = COIN * 0.10;
+    }
     return nDFSubsidy;
 }
 
@@ -2829,7 +2878,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime1 - nTimeStart), 0.001 * (nTime1 - nTimeStart) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime1 - nTimeStart) / (nInputs - 1), nTimeConnect * 0.000001);
 
     //PoW phase redistributed fees to miner. PoS stage destroys fees.
-    CAmount nExpectedMint = GetBlockValue(pindex->nHeight);
+    CAmount nExpectedMint = GetBlockValue(pindex->pprev->nHeight);
     if (block.IsProofOfWork())
         nExpectedMint += nFees;
 
