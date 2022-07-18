@@ -5,16 +5,16 @@ SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 1.0.0
+!define VERSION 1.1.0
 !define COMPANY "BDCashProtocol project"
 !define URL https://www.bdcashprotocol.org
 
 # MUI Symbol Definitions
-!define MUI_ICON "/mnt/c/bdcash/share/pixmaps/bitcoin.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/mnt/c/bdcash/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/mnt/c/bdeco/share/pixmaps/bitcoin.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/mnt/c/bdeco/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/mnt/c/bdcash/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/mnt/c/bdeco/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
@@ -22,7 +22,7 @@ SetCompressor /SOLID lzma
 !define MUI_STARTMENUPAGE_DEFAULTFOLDER "BDCashProtocol"
 !define MUI_FINISHPAGE_RUN $INSTDIR\bdcashprotocol-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/c/bdcash/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/mnt/c/bdeco/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -48,7 +48,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /mnt/c/bdcash/bdcashprotocol-${VERSION}-win64-setup.exe
+OutFile /mnt/c/bdeco/bdcashprotocol-${VERSION}-win64-setup.exe
 !if "64" == "64"
 InstallDir $PROGRAMFILES64\BDCashProtocol
 !else
@@ -73,14 +73,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /mnt/c/bdcash/release/bdcashprotocol-qt.exe
-    File /oname=COPYING.txt /mnt/c/bdcash/COPYING
-    File /oname=readme.txt /mnt/c/bdcash/doc/README_windows.txt
+    File /mnt/c/bdeco/release/bdcashprotocol-qt.exe
+    File /oname=COPYING.txt /mnt/c/bdeco/COPYING
+    File /oname=readme.txt /mnt/c/bdeco/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /mnt/c/bdcash/release/bdcashprotocold.exe
-    File /mnt/c/bdcash/release/bdcashprotocol-cli.exe
+    File /mnt/c/bdeco/release/bdcashprotocold.exe
+    File /mnt/c/bdeco/release/bdcashprotocol-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /mnt/c/bdcash/doc\*.*
+    File /r /mnt/c/bdeco/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd

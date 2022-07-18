@@ -112,8 +112,6 @@ public:
     // BDECO
     /** Number of halving reward block */
     int SubsidyHalvingBlock() const { return nSubsidyHalvingBlock; }
-    /** Masternode colleteral value */
-    int MasternodeCollateral() const { return  nMasternodeCollateral; }
     /** Address of developers fee */
     std::string DevRewardAddress() const { return  strDevFeeAddress; }
 
@@ -167,7 +165,6 @@ protected:
     int nBlockZerocoinV2;
 
     int nSubsidyHalvingBlock;
-    int nMasternodeCollateral;
     std::string strDevFeeAddress;
 
 };
