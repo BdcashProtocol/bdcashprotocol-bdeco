@@ -1794,77 +1794,21 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
 CAmount GetCurrentCollateral()
 {
     int blockHeight = chainActive.Height();
-   // int gracePeriod = 75000;
-    int64_t nCollateral = 2500;
 
-    if (blockHeight > 2000000 ) {
-        nCollateral = 50000; 
-        return nCollateral * COIN;
-    //}else if (blockHeight <= 2000000 + gracePeriod && blockHeight >= 2000000 - gracePeriod){
-       // nCollateral = 50000 || 25000;
-       // return nCollateral * COIN;
+    if (blockHeight > 2000000) return 100000 * COIN;
+    if (blockHeight > 1600000) return 75000 * COIN;
+    if (blockHeight > 1300000) return 50000 * COIN;
+    if (blockHeight > 1100000) return 25000 * COIN;
+    if (blockHeight > 900000) return 20000 * COIN;
+    if (blockHeight > 600000) return 15000 * COIN;
+    if (blockHeight > 300000) return 10000 * COIN;
+    if (blockHeight > 150000) return 7000 * COIN;
+    if (blockHeight > 100000) return 5000 * COIN;
 
-    }else if (blockHeight > 1600000 ){
-        nCollateral = 25000;
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 1600000 + gracePeriod && blockHeight >= 1600000 - gracePeriod){
-       // nCollateral = 25000 || 20000;
-       // return nCollateral * COIN;
 
-    }else if (blockHeight > 1300000 ){
-        nCollateral = 20000;
-        return nCollateral * COIN;
-    //}else if (blockHeight <= 1300000 + gracePeriod && blockHeight >= 1300000 - gracePeriod){
-        //nCollateral = 20000 || 15000;
-       // return nCollateral * COIN;
-
-    }else if (blockHeight > 1100000 ){
-        nCollateral = 15000;
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 1100000 + gracePeriod && blockHeight >= 1100000 - gracePeriod){
-      //  nCollateral = 15000 || 10000;
-       // return nCollateral * COIN;
-
-    }else if (blockHeight > 900000 ){
-        nCollateral = 10000;
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 900000 + gracePeriod && blockHeight >= 900000 - gracePeriod){
-     //   nCollateral = 10000 || 7000;
-      //  return nCollateral * COIN;
-
-    }else if (blockHeight > 600000 ){
-        nCollateral = 7000;
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 600000 + gracePeriod && blockHeight >= 600000 - gracePeriod){
-      //  nCollateral = 7000 || 5000;
-      //  return nCollateral * COIN;
-
-    }else if (blockHeight > 300000 ){
-        nCollateral = 5000;
-        return nCollateral * COIN;
-    //}else if (blockHeight <= 300000 + gracePeriod && blockHeight >= 300000 - gracePeriod){
-     //   nCollateral = 5000 || 4000;
-     //   return nCollateral * COIN;
-
-    }else if (blockHeight > 150000 ){
-        nCollateral = 4000
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 150000 + gracePeriod && blockHeight >= 150000 - gracePeriod){
-      //  nCollateral = 4000 || 3000;
-      //  return nCollateral * COIN;
-
-    }else if (blockHeight > 100000 ){
-        nCollateral = 3000;
-        return nCollateral * COIN;
-   // }else if (blockHeight <= 1000 + gracePeriod && blockHeight >= 1000 - gracePeriod){
-      //  nCollateral = 3000 || 2500;
-       // return nCollateral * COIN;
-    }else{
-    return nCollateral * COIN;
-    }
+    return 2500 * COIN;
 
 }
-/////////////////////////////
 
 double ConvertBitsToDouble(unsigned int nBits)
 {
@@ -1912,11 +1856,11 @@ int64_t GetBlockValue(int nHeight)
     } else if ( nHeight >= 1100000 && nHeight <= 1299999) {
         nSubsidy = COIN * 30;
     } else if ( nHeight >= 1300000 && nHeight <= 1599999) {
-        nSubsidy = COIN * 20; 
+        nSubsidy = COIN * 25; 
     } else if ( nHeight >= 1600000 && nHeight <= 1999999) {
-        nSubsidy = COIN * 15;           
+        nSubsidy = COIN * 20;           
     } else {
-        nSubsidy = COIN * 10;
+        nSubsidy = COIN * 15;
     }
     return nSubsidy;
 }
@@ -1969,11 +1913,11 @@ int64_t GetDevelopersPayment(int nHeight) {
     } else if ( nHeight >= 1100000 && nHeight <= 1299999) {
        nDFSubsidy = COIN * 0.05; 
     } else if ( nHeight >= 1300000 && nHeight <= 1599999) {
-       nDFSubsidy = COIN * 0.15; 
+       nDFSubsidy = COIN * 0.20; 
     } else if ( nHeight >= 1600000 && nHeight <= 1999999) {
-       nDFSubsidy = COIN * 0.10;               
+       nDFSubsidy = COIN * 0.15;               
     } else {
-       nDFSubsidy = COIN * 0.05;
+       nDFSubsidy = COIN * 0.10;
     }
     return nDFSubsidy;
 }
@@ -2332,7 +2276,7 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
     CDiskBlockPos pos = pindex->GetUndoPos();
     if (pos.IsNull())
         return error("DisconnectBlock() : no undo data available");
-    if (!blockUndo.ReadFromDisk(pos, pindex->GetBlockHash()))
+    if (!blockUndo.ReadFromDisk(pos, pindex->pprev->GetBlockHash()))
         return error("DisconnectBlock() : failure reading undo data");
 
     if (blockUndo.vtxundo.size() + 1 != block.vtx.size())
@@ -2441,13 +2385,13 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
     }
 
     // move best block pointer to prevout block
-    view.SetBestBlock(pindex->GetBlockHash());
+    view.SetBestBlock(pindex->pprev->GetBlockHash());
 
     if (!fVerifyingBlocks) {
         //if block is an accumulator checkpoint block, remove checkpoint and checksums from db
         uint256 nCheckpoint = pindex->nAccumulatorCheckpoint;
-        if(nCheckpoint != pindex->nAccumulatorCheckpoint) {
-            if(!EraseAccumulatorValues(nCheckpoint, pindex->nAccumulatorCheckpoint))
+        if(nCheckpoint != pindex->pprev->nAccumulatorCheckpoint) {
+            if(!EraseAccumulatorValues(nCheckpoint, pindex->pprev->nAccumulatorCheckpoint))
                 return error("DisconnectBlock(): failed to erase checkpoint");
         }
     }
@@ -2534,7 +2478,7 @@ void RecalculateZBDECOSpent()
         list<libzerocoin::CoinDenomination> listDenomsSpent = ZerocoinSpendListFromBlock(block, true);
 
         //Reset the supply to previous block
-        pindex->mapZerocoinSupply = pindex->mapZerocoinSupply;
+        pindex->mapZerocoinSupply = pindex->pprev->mapZerocoinSupply;
 
         //Add mints to zBDECOsupply
         for (auto denom : libzerocoin::zerocoinDenomList) {
@@ -2562,7 +2506,7 @@ bool RecalculateBDECOSupply(int nHeightStart)
         return false;
 
     CBlockIndex* pindex = chainActive[nHeightStart];
-    CAmount nSupplyPrev = pindex->nMoneySupply;
+    CAmount nSupplyPrev = pindex->pprev->nMoneySupply;
     if (nHeightStart == Params().Zerocoin_StartHeight())
         nSupplyPrev = CAmount(5449796547496199);
 
@@ -2633,7 +2577,7 @@ bool ReindexAccumulators(list<uint256>& listMissingCheckpoints, string& strError
                 return false;
 
             // find checkpoints by iterating through the blockchain beginning with the first zerocoin block
-            if (pindex->nAccumulatorCheckpoint != pindex->nAccumulatorCheckpoint) {
+            if (pindex->nAccumulatorCheckpoint != pindex->pprev->nAccumulatorCheckpoint) {
                 if (find(listMissingCheckpoints.begin(), listMissingCheckpoints.end(), pindex->nAccumulatorCheckpoint) != listMissingCheckpoints.end()) {
                     uint256 nCheckpointCalculated = 0;
                     AccumulatorMap mapAccumulators(Params().Zerocoin_Params(false));
@@ -2672,16 +2616,16 @@ bool UpdateZBDECOSupply(const CBlock& block, CBlockIndex* pindex)
     std::list<libzerocoin::CoinDenomination> listSpends = ZerocoinSpendListFromBlock(block, fFilterInvalid);
 
     // Initialize zerocoin supply to the supply from previous block
-    if (pindex && pindex->GetBlockHeader().nVersion > 3) {
+    if (pindex->pprev && pindex->pprev->GetBlockHeader().nVersion > 3) {
         for (auto& denom : zerocoinDenomList) {
-            pindex->mapZerocoinSupply.at(denom) = pindex->mapZerocoinSupply.at(denom);
+            pindex->mapZerocoinSupply.at(denom) = pindex->pprev->mapZerocoinSupply.at(denom);
         }
     }
 
     // Track zerocoin money supply
     CAmount nAmountZerocoinSpent = 0;
     pindex->vMintDenominationsInBlock.clear();
-    if (pindex) {
+    if (pindex->pprev) {
         std::set<uint256> setAddedToWallet;
         for (auto& m : listMints) {
             libzerocoin::CoinDenomination denom = m.GetDenomination();
@@ -2740,7 +2684,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return false;
 
     // verify that the view's current state corresponds to the previous block
-    uint256 hashPrevBlock = pindex == NULL ? uint256(0) : pindex->GetBlockHash();
+    uint256 hashPrevBlock = pindex->pprev == NULL ? uint256(0) : pindex->pprev->GetBlockHash();
     if (hashPrevBlock != view.GetBestBlock())
         LogPrintf("%s: hashPrev=%s view=%s\n", __func__, hashPrevBlock.ToString().c_str(), view.GetBestBlock().ToString().c_str());
     assert(hashPrevBlock == view.GetBestBlock());
@@ -2921,7 +2865,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                                     block.GetHash().GetHex(), pindex->nHeight), REJECT_INVALID);
 
     // track money supply and mint amount info
-    CAmount nMoneySupplyPrev = pindex->pprev ? pindex->nMoneySupply : 0;
+    CAmount nMoneySupplyPrev = pindex->pprev ? pindex->pprev->nMoneySupply : 0;
     pindex->nMoneySupply = nMoneySupplyPrev + nValueOut - nValueIn;
     pindex->nMint = pindex->nMoneySupply - nMoneySupplyPrev + nFees;
 
@@ -2967,7 +2911,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             CDiskBlockPos pos;
             if (!FindUndoPos(state, pindex->nFile, pos, ::GetSerializeSize(blockundo, SER_DISK, CLIENT_VERSION) + 40))
                 return error("ConnectBlock() : FindUndoPos failed");
-            if (!blockundo.WriteToDisk(pos, pindex->GetBlockHash()))
+            if (!blockundo.WriteToDisk(pos, pindex->pprev->GetBlockHash()))
                 return state.Abort("Failed to write undo data");
 
             // update nUndoPos in block index
@@ -3160,7 +3104,7 @@ void static UpdateTip(CBlockIndex* pindexNew)
         for (int i = 0; i < 100 && pindex != NULL; i++) {
             if (pindex->nVersion > CBlock::CURRENT_VERSION)
                 ++nUpgraded;
-            pindex = pindex;
+            pindex = pindex->pprev;
         }
         if (nUpgraded > 0)
             LogPrintf("SetBestChain: %d of last 100 blocks above version %d\n", nUpgraded, (int)CBlock::CURRENT_VERSION);
@@ -3661,7 +3605,7 @@ bool ReconsiderBlock(CValidationState& state, CBlockIndex* pindex)
             pindex->nStatus &= ~BLOCK_FAILED_MASK;
             setDirtyBlockIndex.insert(pindex);
         }
-        pindex = pindex;
+        pindex = pindex->pprev;
     }
     return true;
 }
@@ -3758,7 +3702,7 @@ bool ReceivedBlockTransactions(const CBlock& block, CValidationState& state, CBl
         while (!queue.empty()) {
             CBlockIndex* pindex = queue.front();
             queue.pop_front();
-            pindex->nChainTx = (pindex ? pindex->nChainTx : 0) + pindex->nTx;
+            pindex->nChainTx = (pindex->pprev ? pindex->pprev->nChainTx : 0) + pindex->nTx;
             {
                 LOCK(cs_nBlockSequenceId);
                 pindex->nSequenceId = nBlockSequenceId++;
@@ -4294,7 +4238,7 @@ bool AcceptBlock(CBlock& block, CValidationState& state, CBlockIndex** ppindex, 
         return true;
     }
 
-    if ((!fAlreadyCheckedBlock && !CheckBlock(block, state)) || !ContextualCheckBlock(block, state, pindex)) {
+    if ((!fAlreadyCheckedBlock && !CheckBlock(block, state)) || !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
@@ -4629,24 +4573,24 @@ bool static LoadBlockIndexDB(string& strError)
     sort(vSortedByHeight.begin(), vSortedByHeight.end());
     BOOST_FOREACH (const PAIRTYPE(int, CBlockIndex*) & item, vSortedByHeight) {
         CBlockIndex* pindex = item.second;
-        pindex->nChainWork = (pindex ? pindex->nChainWork : 0) + GetBlockProof(*pindex);
+        pindex->nChainWork = (pindex->pprev ? pindex->pprev->nChainWork : 0) + GetBlockProof(*pindex);
         if (pindex->nStatus & BLOCK_HAVE_DATA) {
-            if (pindex) {
-                if (pindex->nChainTx) {
-                    pindex->nChainTx = pindex->nChainTx + pindex->nTx;
+            if (pindex->pprev) {
+                if (pindex->pprev->nChainTx) {
+                    pindex->nChainTx = pindex->pprev->nChainTx + pindex->nTx;
                 } else {
                     pindex->nChainTx = 0;
-                    mapBlocksUnlinked.insert(std::make_pair(pindex, pindex));
+                    mapBlocksUnlinked.insert(std::make_pair(pindex->pprev, pindex));
                 }
             } else {
                 pindex->nChainTx = pindex->nTx;
             }
         }
-        if (pindex->IsValid(BLOCK_VALID_TRANSACTIONS) && (pindex->nChainTx || pindex == NULL))
+        if (pindex->IsValid(BLOCK_VALID_TRANSACTIONS) && (pindex->nChainTx || pindex->pprev == NULL))
             setBlockIndexCandidates.insert(pindex);
         if (pindex->nStatus & BLOCK_FAILED_MASK && (!pindexBestInvalid || pindex->nChainWork > pindexBestInvalid->nChainWork))
             pindexBestInvalid = pindex;
-        if (pindex)
+        if (pindex->pprev)
             pindex->BuildSkip();
         if (pindex->IsValid(BLOCK_VALID_TREE) && (pindexBestHeader == NULL || CBlockIndexWorkComparator()(pindexBestHeader, pindex)))
             pindexBestHeader = pindex;
@@ -4746,7 +4690,7 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
     CBlockIndex* pindexFailure = NULL;
     int nGoodTransactions = 0;
     CValidationState state;
-    for (CBlockIndex* pindex = chainActive.Tip(); pindex && pindex; pindex = pindex) {
+    for (CBlockIndex* pindex = chainActive.Tip(); pindex && pindex->pprev; pindex = pindex->pprev) {
         boost::this_thread::interruption_point();
         uiInterface.ShowProgress(_("Verifying blocks..."), std::max(1, std::min(99, (int)(((double)(chainActive.Height() - pindex->nHeight)) / (double)nCheckDepth * (nCheckLevel >= 4 ? 50 : 100)))));
         if (pindex->nHeight < chainActive.Height() - nCheckDepth)
@@ -4763,7 +4707,7 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
             CBlockUndo undo;
             CDiskBlockPos pos = pindex->GetUndoPos();
             if (!pos.IsNull()) {
-                if (!undo.ReadFromDisk(pos, pindex->GetBlockHash()))
+                if (!undo.ReadFromDisk(pos, pindex->pprev->GetBlockHash()))
                     return error("VerifyDB() : *** found bad undo data at %d, hash=%s\n", pindex->nHeight, pindex->GetBlockHash().ToString());
             }
         }
@@ -4772,7 +4716,7 @@ bool CVerifyDB::VerifyDB(CCoinsView* coinsview, int nCheckLevel, int nCheckDepth
             bool fClean = true;
             if (!DisconnectBlock(block, state, pindex, coins, &fClean))
                 return error("VerifyDB() : *** irrecoverable inconsistency in block data at %d, hash=%s", pindex->nHeight, pindex->GetBlockHash().ToString());
-            pindexState = pindex;
+            pindexState = pindex->pprev;
             if (!fClean) {
                 nGoodTransactions = 0;
                 pindexFailure = pindex;
@@ -5005,12 +4949,12 @@ void static CheckBlockIndex()
         nNodes++;
         if (pindexFirstInvalid == NULL && pindex->nStatus & BLOCK_FAILED_VALID) pindexFirstInvalid = pindex;
         if (pindexFirstMissing == NULL && !(pindex->nStatus & BLOCK_HAVE_DATA)) pindexFirstMissing = pindex;
-        if (pindex != NULL && pindexFirstNotTreeValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_TREE) pindexFirstNotTreeValid = pindex;
-        if (pindex != NULL && pindexFirstNotChainValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_CHAIN) pindexFirstNotChainValid = pindex;
-        if (pindex != NULL && pindexFirstNotScriptsValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_SCRIPTS) pindexFirstNotScriptsValid = pindex;
+        if (pindex->pprev != NULL && pindexFirstNotTreeValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_TREE) pindexFirstNotTreeValid = pindex;
+        if (pindex->pprev != NULL && pindexFirstNotChainValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_CHAIN) pindexFirstNotChainValid = pindex;
+        if (pindex->pprev != NULL && pindexFirstNotScriptsValid == NULL && (pindex->nStatus & BLOCK_VALID_MASK) < BLOCK_VALID_SCRIPTS) pindexFirstNotScriptsValid = pindex;
 
         // Begin: actual consistency checks.
-        if (pindex == NULL) {
+        if (pindex->pprev == NULL) {
             // Genesis block checks.
             assert(pindex->GetBlockHash() == Params().HashGenesisBlock()); // Genesis block's hash must match.
             assert(pindex == chainActive.Genesis());                       // The current active chain's genesis block must be this block.
@@ -5022,7 +4966,7 @@ void static CheckBlockIndex()
         // All parents having data is equivalent to all parents being VALID_TRANSACTIONS, which is equivalent to nChainTx being set.
         assert((pindexFirstMissing != NULL) == (pindex->nChainTx == 0));                                             // nChainTx == 0 is used to signal that all parent block's transaction data is available.
         assert(pindex->nHeight == nHeight);                                                                          // nHeight must be consistent.
-        assert(pindex == NULL || pindex->nChainWork >= pindex->nChainWork);                            // For every block except the genesis block, the chainwork must be larger than the parent's.
+        assert(pindex->pprev == NULL || pindex->nChainWork >= pindex->pprev->nChainWork);                            // For every block except the genesis block, the chainwork must be larger than the parent's.
         assert(nHeight < 2 || (pindex->pskip && (pindex->pskip->nHeight < nHeight)));                                // The pskip pointer must point back for all but the first 2 blocks.
         assert(pindexFirstNotTreeValid == NULL);                                                                     // All mapBlockIndex entries must at least be TREE valid
         if ((pindex->nStatus & BLOCK_VALID_MASK) >= BLOCK_VALID_TREE) assert(pindexFirstNotTreeValid == NULL);       // TREE valid implies all parents are TREE valid
@@ -5040,17 +4984,17 @@ void static CheckBlockIndex()
             assert(setBlockIndexCandidates.count(pindex) == 0);
         }
         // Check whether this block is in mapBlocksUnlinked.
-        std::pair<std::multimap<CBlockIndex*, CBlockIndex*>::iterator, std::multimap<CBlockIndex*, CBlockIndex*>::iterator> rangeUnlinked = mapBlocksUnlinked.equal_range(pindex);
+        std::pair<std::multimap<CBlockIndex*, CBlockIndex*>::iterator, std::multimap<CBlockIndex*, CBlockIndex*>::iterator> rangeUnlinked = mapBlocksUnlinked.equal_range(pindex->pprev);
         bool foundInUnlinked = false;
         while (rangeUnlinked.first != rangeUnlinked.second) {
-            assert(rangeUnlinked.first->first == pindex);
+            assert(rangeUnlinked.first->first == pindex->pprev);
             if (rangeUnlinked.first->second == pindex) {
                 foundInUnlinked = true;
                 break;
             }
             rangeUnlinked.first++;
         }
-        if (pindex && pindex->nStatus & BLOCK_HAVE_DATA && pindexFirstMissing != NULL) {
+        if (pindex->pprev && pindex->nStatus & BLOCK_HAVE_DATA && pindexFirstMissing != NULL) {
             if (pindexFirstInvalid == NULL) { // If this block has block data available, some parent doesn't, and has no invalid parents, it must be in mapBlocksUnlinked.
                 assert(foundInUnlinked);
             }
@@ -5079,7 +5023,7 @@ void static CheckBlockIndex()
             if (pindex == pindexFirstNotChainValid) pindexFirstNotChainValid = NULL;
             if (pindex == pindexFirstNotScriptsValid) pindexFirstNotScriptsValid = NULL;
             // Find our parent.
-            CBlockIndex* pindexPar = pindex;
+            CBlockIndex* pindexPar = pindex->pprev;
             // Find which child we just visited.
             std::pair<std::multimap<CBlockIndex*, CBlockIndex*>::iterator, std::multimap<CBlockIndex*, CBlockIndex*>::iterator> rangePar = forward.equal_range(pindexPar);
             while (rangePar.first->second != pindex) {

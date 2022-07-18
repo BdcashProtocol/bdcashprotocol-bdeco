@@ -14,7 +14,7 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 |Ticker 				    | `BDECO`               |Block Time  			| `1 MINUTE`          |
 |Algorithm					| `Quark`             |Stake Min Age		| `1 HOUR`           |
 |Type 						| `PoS/MN`                      |
-|Total Suply 			    | `210,000,000 BDECO`    |Port 			    | `36264`    		  |
+|Total Suply 			    | `210,000,000 BDECO`    |Port Default			    | `36263`    		  |
 |Masternode Collateral      | `Variable`         |Datadir			    | `.bdcashprotocol`			  |
 
 |Schem Reward |               |              |        |         |      |
@@ -25,15 +25,15 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 201-9999 | 10 | 40% | 60%|0.05 BDECO| 2500 BDECO |
 10000-49999 | 20 | 40% | 60%|0.05 BDECO|2500 BDECO |
 50000-99999 | 15 | 40% | 60%|0.05 BDECO|2500 BDECO |
-100000-149999 | 25 | 30% | 70%|0.10 BDECO|3000 BDECO |
-150000-299999 | 50 | 35% | 65%|0.15 BDECO|4000 BDECO |
-300000-599999 | 45 | 45% | 55%|0.10 BDECO|5000 BDECO |
-600000-899999 | 40 | 30% | 70%|0.05 BDECO|7000 BDECO |
-900000-1099999 | 35 | 45% | 55%|0.10 BDECO|10000 BDECO |
-1100000-1299999 | 30 | 40% | 60%|0.05 BDECO|15000 BDECO |
-1300000-1599999 | 20 | 35% | 65%|0.15 BDECO|20000 BDECO |
-1600000-1999999 | 15 | 40% | 60%|0.10 BDECO|25000 BDECO |
-2000000- to end | 10 | 30% | 70%|0.05 BDECO|50000 BDECO |
+100000-149999 | 25 | 30% | 70%|0.10 BDECO|5000 BDECO |
+150000-299999 | 50 | 35% | 65%|0.15 BDECO|7000 BDECO |
+300000-599999 | 45 | 45% | 55%|0.10 BDECO|10000 BDECO |
+600000-899999 | 40 | 30% | 70%|0.05 BDECO|15000 BDECO |
+900000-1099999 | 35 | 45% | 55%|0.10 BDECO|20000 BDECO |
+1100000-1299999 | 30 | 40% | 60%|0.05 BDECO|25000 BDECO |
+1300000-1599999 | 25 | 35% | 65%|0.20 BDECO|50000 BDECO |
+1600000-1999999 | 20 | 40% | 60%|0.15 BDECO|75000 BDECO |
+2000000- to end | 15 | 30% | 70%|0.10 BDECO|100000 BDECO |
 
 <b>PS:</b> <i>Treasure fee will be deducted directly from the Masternode percentage</i>
 
