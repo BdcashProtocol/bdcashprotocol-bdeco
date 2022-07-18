@@ -38,8 +38,6 @@ The best decentralization to cash or the BDCASH is a cryptocurrency forked from 
 <b>PS:</b> <i>Treasure fee will be deducted directly from the Masternode percentage</i>
 
 
-
-
 ### Social Network:
  [![Twitter](https://img.shields.io/static/v1?label=Twitter&message=Follow&color=blue)](https://twitter.com/bdcashprotocol) 
  [![ANN Official](https://img.shields.io/static/v1?label=BitcoinTalk&message=Join&color=yellow)](https://bitcointalk.org/index.php?topic=5244522) 
