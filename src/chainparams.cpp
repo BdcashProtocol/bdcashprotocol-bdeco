@@ -166,9 +166,9 @@ public:
         assert(hashGenesisBlock == uint256("0x0000ae49910f3ea69ebd9cc2d961908280ecd2b96532e206e8c37361faf1a51e"));
         assert(genesis.hashMerkleRoot == uint256("0xf4b45a6364c91c274d179429a09202a23fe2a6da548c81334d49ae19503c7f28"));
 
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed1.bdcashprotocol.com")); // First seed by team bdcashprotocol
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed2.bdcashprotocol.com")); // second seed by team bdcashprotocol
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seed3.bdcashprotocol.com")); // Third seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("164.68.108.135", "164.68.108.135")); // First seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("164.68.97.55", "164.68.97.55")); // second seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("144.91.78.61", "144.91.78.61")); // Third seed by team bdcashprotocol
         vSeeds.push_back(CDNSSeedData("coinstake.in", "coinstake.in")); // from coinstake
 
 
@@ -260,9 +260,9 @@ public:
 
         assert(hashGenesisBlock == uint256("0x000066ac3487857739e403a8d9ea432a455786a6b9f0f61d9188f36ddffa16b8"));
 
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest1.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest2.bdcashprotocol.com"));
-        vSeeds.push_back(CDNSSeedData("bdcashprotocol.com", "seedtest3.bdcashprotocol.com"));
+        vSeeds.push_back(CDNSSeedData("164.68.108.135", "164.68.108.135")); // First seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("164.68.97.55", "164.68.97.55")); // second seed by team bdcashprotocol
+        vSeeds.push_back(CDNSSeedData("144.91.78.61", "144.91.78.61")); // Third seed by team bdcashprotocol
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 85); // Testnet bdcashprotocol addresses start with 'b'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 86);  // Testnet bdcashprotocol script addresses start with 'b' or 'c'
