@@ -1791,7 +1791,7 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
     return true;
 }
 
-CAmount GetCurrentCollateral()
+CAmount GetCurrentCollateral(int nHeight)
 {
     int blockHeight = chainActive.Height();
 

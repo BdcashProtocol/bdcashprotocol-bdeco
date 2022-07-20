@@ -238,7 +238,7 @@ bool DisconnectBlocksAndReprocess(int blocks);
 
 // ***TODO***
 double ConvertBitsToDouble(unsigned int nBits);
-CAmount GetCurrentCollateral();
+CAmount GetCurrentCollateral(int nHeight);
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, bool isZBDECOStake);
 int64_t GetDevelopersPayment(int nHeight);
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock, bool fProofOfStake);
