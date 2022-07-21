@@ -2156,7 +2156,7 @@ bool CWallet::MintableCoins()
 {
     LOCK(cs_main);
     CAmount nBalance = GetBalance();
-    CAmount nZzcrBalance = GetZerocoinBalance(false);
+    CAmount nZbdecoBalance = GetZerocoinBalance(false);
 
     if (nBalance > 0) {
         if (mapArgs.count("-reservebalance") && !ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
@@ -2181,7 +2181,7 @@ bool CWallet::MintableCoins()
     }
 
     // zBDECO
-    if (nZzcrBalance > 0) {
+    if (nZbdecoBalance > 0) {
         set<CMintMeta> setMints = zbdecoTracker->ListMints(true, true, true);
         for (auto mint : setMints) {
             if (mint.nVersion < CZerocoinMint::STAKABLE_VERSION)
