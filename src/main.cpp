@@ -1791,22 +1791,22 @@ bool ReadBlockFromDisk(CBlock& block, const CBlockIndex* pindex)
     return true;
 }
 
-CAmount GetCurrentCollateral(int nHeight)
+CAmount GetCurrentCollateral()
 {
     int blockHeight = chainActive.Height();
 
-    if (blockHeight > 2000000) return 100000 * COIN;
-    if (blockHeight > 1600000) return 75000 * COIN;
-    if (blockHeight > 1300000) return 50000 * COIN;
-    if (blockHeight > 1100000) return 25000 * COIN;
-    if (blockHeight > 900000) return 20000 * COIN;
-    if (blockHeight > 600000) return 15000 * COIN;
-    if (blockHeight > 300000) return 10000 * COIN;
-    if (blockHeight > 150000) return 7000 * COIN;
-    if (blockHeight > 100000) return 5000 * COIN;
+    if (blockHeight > 2000000) return 100000 ;
+    if (blockHeight > 1600000) return 75000 ;
+    if (blockHeight > 1300000) return 50000 ;
+    if (blockHeight > 1100000) return 25000 ;
+    if (blockHeight > 900000) return 20000 ;
+    if (blockHeight > 600000) return 15000 ;
+    if (blockHeight > 300000) return 10000 ;
+    if (blockHeight > 150000) return 7000 ;
+    if (blockHeight > 100000) return 5000 ;
 
 
-    return 2500 * COIN;
+    return 2500 ;
 
 }
 
